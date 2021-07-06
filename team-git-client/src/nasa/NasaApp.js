@@ -1,8 +1,9 @@
 import React from "react"
 import {useState, useEffect} from "react";
+import NasaDisplay from "../nasa/NasaDisplay";
 
 const NasaApp = (props) => {
-    const url = `https://api.nasa.gov/planetary/earth/assets?lon=${props.long}&lat=${props.lat}&&dim=0.025&api_key=BLcnhcKA00Yu9E4TtarQeorQbTq0C4mrQiJRvM0e`;
+    const url = `https://api.nasa.gov/planetary/earth/assets?lon=${props.long}&lat=${props.lat}&&dim=0.07&api_key=BLcnhcKA00Yu9E4TtarQeorQbTq0C4mrQiJRvM0e`;
     const [image, setImage] = useState('');
 
 
@@ -15,14 +16,12 @@ useEffect(() => {
     }) 
 }, [url]) 
 
+
 return(
-    <div> 
-       {!image || !image ? null : <img src={image} /> }
+    <div>
+    {!image || !image ? null : <NasaDisplay image = {image} /> }  
     </div>
 )
-
-
-
 }
 
 
