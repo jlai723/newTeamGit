@@ -26,7 +26,6 @@ const WeatherApp = (props) => {
         <div>
             <Button size="medium" variant="contained" onClick={fetcher}>What's the Weather?</Button>
             <br />
-            {/* {console.log(weatherInfo)} */}
             {!weatherInfo || !weatherInfo ? null : <WeatherDisplay weatherInfo={weatherInfo} />}
         </div>
     )

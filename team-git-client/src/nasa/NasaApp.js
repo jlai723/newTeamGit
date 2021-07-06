@@ -1,25 +1,27 @@
 import React from "react"
 import {useState, useEffect} from "react";
+import NasaDisplay from "../nasa/NasaDisplay";
 
 const NasaApp = (props) => {
+    const url = `https://api.nasa.gov/planetary/earth/assets?lon=${props.long}&lat=${props.lat}&&dim=0.07&api_key=BLcnhcKA00Yu9E4TtarQeorQbTq0C4mrQiJRvM0e`;
     const [image, setImage] = useState('');
 
-// fetch(`https://api.nasa.gov/planetary/earth/assets?lon=${props.long}&lat=${props.lat}&&dim=0.35&api_key=BLcnhcKA00Yu9E4TtarQeorQbTq0C4mrQiJRvM0e`)
 
-//fetch("https://api.nasa.gov/planetary/earth/imagery?lon=-86.03&lat=39.90&api_key=BLcnhcKA00Yu9E4TtarQeorQbTq0C4mrQiJRvM0e")
-// .then(res => res.json())
-// .then(json => {
-// console.log(json)
-// })
+useEffect(() => {
+    fetch(url) 
+    .then(res => res.json())
+    .then(json => {
+        setImage(json.url)
+    console.log(json)
+    }) 
+}, [url]) 
+
 
 return(
-    <div> 
-        <h1>NASA</h1>
+    <div>
+    {!image || !image ? null : <NasaDisplay image = {image} /> }  
     </div>
 )
-
-
-
 }
 
 
