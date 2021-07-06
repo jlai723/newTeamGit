@@ -35,10 +35,11 @@ const WeatherDisplay = (props) => {
     const useStyles = makeStyles({
         root: {
             display: 'flex',
+            justifyContent: 'center',
         },
         media: {
-            height: 0,
-            paddingTop: '56.25%',
+            height: '90px',
+            width: '90px',
         },
     });
 
@@ -53,7 +54,8 @@ const WeatherDisplay = (props) => {
                     />
                     <CardMedia
                         className={classes.media}
-                        image={`http://openweathermap.org/img/w/${props.weatherInfo.weather[0].icon}.png`}
+                        component = 'img'
+                        src={`http://openweathermap.org/img/w/${props.weatherInfo.weather[0].icon}.png`}
                     />
                     <CardContent>
                         <Typography>
