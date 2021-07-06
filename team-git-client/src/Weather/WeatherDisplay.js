@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-    Box,
+    Container,
     Card,
     CardHeader,
     CardActions,
@@ -36,6 +36,9 @@ const WeatherDisplay = (props) => {
         root: {
             display: 'flex',
             justifyContent: 'center',
+            marginTop: '10px',
+            marginBottom: '10px',
+            maxWidth: '650px',
         },
         media: {
             height: '90px',
@@ -48,30 +51,32 @@ const WeatherDisplay = (props) => {
     const display = () => {
         if (props.weatherInfo) {
             return (
-                <Card className={classes.root}>
-                    <CardHeader
-                        title={props.weatherInfo.name}
-                    />
-                    <CardMedia
-                        className={classes.media}
-                        component = 'img'
-                        src={`http://openweathermap.org/img/w/${props.weatherInfo.weather[0].icon}.png`}
-                    />
-                    <CardContent>
-                        <Typography>
-                            {props.weatherInfo.weather[0].description}
-                        </Typography>
-                        <Typography>
-                            {`Current Temp: ${currTemp}${unit}`}
-                        </Typography>
-                        <Typography>
-                            {`Feels Like: ${feelsTemp}${unit}`}
-                        </Typography>
-                    </CardContent>
-                    <CardActions style={{ justifyContent: 'center' }}>
-                        <Button size="small" color="secondary" variant="contained" onClick={toggleBtn}>{btn}</Button>
-                    </CardActions>
-                </Card>
+                <Container className={classes.root}>
+                    <Card className={classes.root}>
+                        <CardHeader
+                            title={props.weatherInfo.name}
+                        />
+                        <CardMedia
+                            className={classes.media}
+                            component='img'
+                            src={`http://openweathermap.org/img/w/${props.weatherInfo.weather[0].icon}.png`}
+                        />
+                        <CardContent>
+                            <Typography>
+                                {props.weatherInfo.weather[0].description}
+                            </Typography>
+                            <Typography>
+                                {`Current Temp: ${currTemp}${unit}`}
+                            </Typography>
+                            <Typography>
+                                {`Feels Like: ${feelsTemp}${unit}`}
+                            </Typography>
+                        </CardContent>
+                        <CardActions style={{ justifyContent: 'center' }}>
+                            <Button size="small" color="secondary" variant="contained" onClick={toggleBtn}>{btn}</Button>
+                        </CardActions>
+                    </Card>
+                </Container>
             )
         }
     }

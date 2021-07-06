@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import TicketMasterApp from '../ticketmaster/TicketMasterApp';
 import WeatherApp from '../Weather/WeatherApp';
 import NasaApp from '../nasa/NasaApp';
+import loading from '../assets/Pulse-1s-200px.gif';
 
 const GetLocation = () => {
     const [lat, setLat] = useState();
@@ -10,18 +11,21 @@ const GetLocation = () => {
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
-            setLat (position.coords.latitude);
-            setLong (position.coords.longitude);
-        }) 
+            setLat(position.coords.latitude);
+            setLong(position.coords.longitude);
+        })
     }, [])
 
-    
+
     return (
         <div>
-            <h4>Current location is: {lat} + {long}</h4>
+            {!(lat && long) || !(lat && long) ? <img src={loading} /> : 
+            <div>
             <WeatherApp lat={lat} long={long} />
             <NasaApp lat={lat} long={long} />
             <TicketMasterApp lat={lat} long={long} />
+            </div>            
+            }
         </div>
     )
 }
